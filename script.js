@@ -1,38 +1,35 @@
-let firstNumber = prompt("Write integer number 'N'");
-do {
-    firstNumber = parseInt(firstNumber,10);
-}   while(isNaN(firstNumber));
-console.log(firstNumber, typeof firstNumber);
+let firstNumber = Number.parseInt(prompt("Write integer number 'N'"));
 
-let secondNumber = prompt("Write integer number 'M'");
-do {
-    secondNumber = parseInt(secondNumber, 10);
-}   while(isNaN(secondNumber));
-console.log(secondNumber, typeof secondNumber);
+if (Number.isInteger(firstNumber) || !isNaN(firstNumber)) {
+    let secondNumber = Number.parseInt(prompt("Write integer number 'M'"));
 
-let sum = 0;
+    if (Number.isInteger(secondNumber) || !isNaN(secondNumber)) {
+        let sum = 0;
 
-if (firstNumber > secondNumber){
-    console.log("Error: first number is bigger then second number");
-    alert("Error: first number is bigger then second number");
-} else {
-    const skip = confirm("Skip even numbers?")
+        if (firstNumber > secondNumber){
+            alert("Error: First number is bigger then second number");
+        } else {
+            const SKIP_MESSAGE = confirm("Skip even numbers ?");
+            if(SKIP_MESSAGE) {
+                for (let i = firstNumber; i <= secondNumber; i++) {
+                    if (i % 2 === 0) {
+                        continue;
+                    }
+                    sum = sum + i;
+                }
 
-    if(skip === true){
-        console.log("Skip even");
-        for (let i = firstNumber; i <= secondNumber; i++){
-            if (i % 2 === 0) {
-                continue;
+                alert(`Sum without even numbers: ${sum}`);
+            } else {
+                for (let i = firstNumber; i <= secondNumber; i++) {
+                    sum = sum + i;
+                }
+
+                alert(`Sum of numbers: ${sum}`);
             }
-            sum = sum + i;
         }
-        console.log("skip even sum " + sum);
-        alert("skip even sum " + sum);
     } else {
-        for (let i = firstNumber; i <=secondNumber; i++){
-            sum = sum + i;
-        }
-        console.log("Sum of numbers " + sum);
-        alert("Sum of numbers " + sum);
+        alert("Error: Something went wrong, bye bye 😉");
     }
+} else  {
+    alert("Error: Something went wrong, bye bye 😉");
 }
